@@ -7,7 +7,7 @@ let package = Package(
     name: "mozjpeg",
     platforms: [
         .iOS(.v12),
-        .macOS(.v11),
+        .macOS(.v10_15),
         .macCatalyst(.v14)
     ],
     products: [
