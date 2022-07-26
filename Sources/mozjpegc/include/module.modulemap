@@ -1,6 +1,5 @@
 module mozjpegc {
     header "JPEGCompression.hxx"
-    header "MJDecompress.hxx"
     header "MJEncoder.hxx"
     export *
 }

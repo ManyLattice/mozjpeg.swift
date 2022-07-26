@@ -103,30 +103,30 @@ my_error_exit (j_common_ptr cinfo)
     return reinterpret_cast<void*>(@"ok");
 }
 
--(void) createCompress:(int)quality width:(int)width height:(int)height{
-    compressStarted = true;
-    cinfo.err = jpeg_std_error(&jerr.pub);
-    jpeg_create_compress(&cinfo);
-    
-    self->outBuffer = NULL;
-    self->outSize = 0;
-    jpeg_mem_dest(&cinfo, &outBuffer, &self->outSize);
-    
-    cinfo.image_width = (uint32_t)width;
-    cinfo.image_height = (uint32_t)height;
-    cinfo.input_components = 3;
-    cinfo.in_color_space = JCS_RGB;
-    jpeg_c_set_int_param(&cinfo, JINT_COMPRESS_PROFILE, JCP_FASTEST);
-    jpeg_set_defaults(&cinfo);
-    cinfo.write_JFIF_header = true;
-    cinfo.write_Adobe_marker = true;
-    cinfo.arith_code = FALSE;
-    cinfo.dct_method = JDCT_ISLOW;
-    cinfo.optimize_coding = TRUE;
-    jpeg_set_quality(&cinfo, quality, 1);
-    jpeg_simple_progression(&cinfo);
-    jpeg_start_compress(&cinfo, 1);
-    self->width = width;
-}
+//-(void) createCompress:(int)quality width:(int)width height:(int)height{
+//    compressStarted = true;
+//    cinfo.err = jpeg_std_error(&jerr.pub);
+//    jpeg_create_compress(&cinfo);
+//    
+//    self->outBuffer = NULL;
+//    self->outSize = 0;
+//    jpeg_mem_dest(&cinfo, &outBuffer, &self->outSize);
+//    
+//    cinfo.image_width = (uint32_t)width;
+//    cinfo.image_height = (uint32_t)height;
+//    cinfo.input_components = 3;
+//    cinfo.in_color_space = JCS_RGB;
+//    jpeg_c_set_int_param(&cinfo, JINT_COMPRESS_PROFILE, JCP_FASTEST);
+//    jpeg_set_defaults(&cinfo);
+//    cinfo.write_JFIF_header = true;
+//    cinfo.write_Adobe_marker = true;
+//    cinfo.arith_code = FALSE;
+//    cinfo.dct_method = JDCT_ISLOW;
+//    cinfo.optimize_coding = TRUE;
+//    jpeg_set_quality(&cinfo, quality, 1);
+//    jpeg_simple_progression(&cinfo);
+//    jpeg_start_compress(&cinfo, 1);
+//    self->width = width;
+//}
 
 @end

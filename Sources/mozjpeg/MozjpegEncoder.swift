@@ -22,7 +22,7 @@ public class MozjpegEncoder {
         if width >= 65000 || height >= 65000 {
             throw InvalidJPEGDimensionsError()
         }
-        compression.createCompress(max(1, Int32(quality * 100)), width: width, height: height)
+//        compression.createCompress(max(1, Int32(quality * 100)), width: width, height: height)
     }
     
     public func addImage(image: MozjpegImage, quality: Float) throws {

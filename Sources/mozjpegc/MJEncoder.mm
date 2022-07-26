@@ -63,7 +63,6 @@
     int result = tjCompress2(tjInstance, static_cast<const unsigned char *>(buffer), static_cast<int>(width), 0, static_cast<int>(height), pixelFormat, &jpegBuf, &jpegSize, TJSAMP_420, quality, flags);
     free(buffer);
     if (result < 0) {
-        NSLog(@"%@", [NSString stringWithFormat:@"JPEG encoding error with : %s", tjGetErrorStr2(tjInstance)]);
         tjFree(jpegBuf);
         return nil;
     }
@@ -91,7 +90,6 @@
     int result = tjCompress2(tjInstance, static_cast<const unsigned char *>(array), static_cast<int>(0), 0, static_cast<int>(0), pixelFormat, &jpegBuf, &jpegSize, TJSAMP_420, quality, flags);
     
     if (result < 0) {
-        NSLog(@"%@", [NSString stringWithFormat:@"JPEG encoding error with : %s", tjGetErrorStr2(tjInstance)]);
         tjFree(jpegBuf);
         return nil;
     }
