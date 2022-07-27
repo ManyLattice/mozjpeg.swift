@@ -87,7 +87,7 @@
         flags |= TJFLAG_PROGRESSIVE;
     }
     
-    int result = tjCompress2(tjInstance, static_cast<const unsigned char *>(array), static_cast<int>(0), 0, static_cast<int>(0), pixelFormat, &jpegBuf, &jpegSize, TJSAMP_420, quality, flags);
+    int result = tjCompress2(tjInstance, static_cast<const unsigned char *>(array), static_cast<int>(size.width), 0, static_cast<int>(size.height), pixelFormat, &jpegBuf, &jpegSize, TJSAMP_420, quality, flags);
     
     if (result < 0) {
         tjFree(jpegBuf);
