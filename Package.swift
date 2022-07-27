@@ -32,7 +32,6 @@ let package = Package(
             path: "Sources/mozjpegc",
             sources: [
                 "JPEGCompression.mm",
-                "MJDecompress.mm",
                 "MJEncoder.mm",
                 "MozjpegImage.mm"
             ], publicHeadersPath: "include",
