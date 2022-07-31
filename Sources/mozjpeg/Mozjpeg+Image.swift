@@ -13,6 +13,7 @@ public typealias MozjpegImage = NSImage
 import UIKit
 public typealias MozjpegImage = UIImage
 #endif
+
 #if SWIFT_PACKAGE
 import mozjpegc
 #endif
