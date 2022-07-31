@@ -6,7 +6,7 @@
 //
 
 #import <MozjpegImage.hxx>
-#import <Accelerate/Accelerate.h>//>
+#import <Accelerate/Accelerate.h>>
 
 @implementation MozjpegImage (MJImage)
 #if TARGET_OS_OSX
@@ -60,7 +60,7 @@
     [NSGraphicsContext setCurrentContext: [NSGraphicsContext graphicsContextWithCGContext:targetContext flipped:FALSE]];
     CGColorSpaceRelease(colorSpace);
     
-    [self drawInRect:NSMakeRect(0, 0, self.mjIntrinsicWidth, self.mjIntrinsicHeight) fromRect:NSZeroRect operation:NSCompositingOperationCopy fraction:1.0];
+    [self drawInRect:NSMakeRect(0, 0, self.mjIntrinsicWidth, self.mjIntrinsicHeight) fromRect:NSZeroRect operation:NSCompositeCopy fraction:1.0];
     
     [NSGraphicsContext restoreGraphicsState];
 

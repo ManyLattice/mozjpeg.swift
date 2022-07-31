@@ -63,6 +63,7 @@
     int result = tjCompress2(tjInstance, static_cast<const unsigned char *>(buffer), static_cast<int>(width), 0, static_cast<int>(height), pixelFormat, &jpegBuf, &jpegSize, TJSAMP_420, quality, flags);
     free(buffer);
     if (result < 0) {
+        NSLog(@"%@", [NSString stringWithFormat:@"JPEG encoding error with : %s", tjGetErrorStr2(tjInstance)]);
         tjFree(jpegBuf);
         return nil;
     }
@@ -71,33 +72,6 @@
         tjFree((unsigned char *)bytes);
     }];
 
-    return resultData;
-}
-
--(nullable NSData*)compressData:(nonnull NSData*)data size:(NSSize)size quality:(int)quality progressive:(bool)progressive useFastest:(bool)useFastest {
-    unsigned char* array = (unsigned char*) [data bytes];
-    
-    const int pixelFormat = TJPF_RGBA;
-    
-    unsigned char* jpegBuf = nullptr;
-    unsigned long jpegSize = 0;
-    
-    int flags = useFastest ? TJFLAG_FASTDCT : TJFLAG_ACCURATEDCT;
-    if (progressive) {
-        flags |= TJFLAG_PROGRESSIVE;
-    }
-    
-    int result = tjCompress2(tjInstance, static_cast<const unsigned char *>(array), static_cast<int>(size.width), 0, static_cast<int>(size.height), pixelFormat, &jpegBuf, &jpegSize, TJSAMP_420, quality, flags);
-    
-    if (result < 0) {
-        tjFree(jpegBuf);
-        return nil;
-    }
-    
-    auto resultData = [[NSMutableData alloc] initWithBytesNoCopy:jpegBuf length:jpegSize deallocator:^(void * _Nonnull bytes, NSUInteger length) {
-        tjFree((unsigned char *)bytes);
-    }];
-    
     return resultData;
 }
 
