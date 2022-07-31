@@ -7,8 +7,10 @@
 
 #if os(macOS)
 import AppKit
+public typealias MozSize = NSSize
 #else
 import UIKit
+public typealias MozSize = CGSize
 #endif
 
 #if SWIFT_PACKAGE
@@ -17,7 +19,7 @@ import mozjpegc
 
 public extension Data {
     
-    func mozjpegRepresentation(size: NSSize, with quality: Float) -> Data? {
+    func mozjpegRepresentation(size: MozSize, with quality: Float) -> Data? {
         let encoder = MJEncoder()
         let quality = Swift.max(1, Int32(quality * 100))
         

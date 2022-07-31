@@ -75,7 +75,7 @@
     return resultData;
 }
 
--(nullable NSData*)compressData:(nonnull NSData*)data size:(NSSize)size quality:(int)quality progressive:(bool)progressive useFastest:(bool)useFastest {
+-(nullable NSData*)compressData:(nonnull NSData*)data size:(MozjpegSize)size quality:(int)quality progressive:(bool)progressive useFastest:(bool)useFastest {
     unsigned char* array = (unsigned char*) [data bytes];
     
     const int pixelFormat = TJPF_RGBA;

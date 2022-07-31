@@ -10,9 +10,11 @@
 #if TARGET_OS_OSX
 #import <AppKit/AppKit.h>
 #define MozjpegImage   NSImage
+#define MozjpegSize   NSSize
 #else
 #import <UIKit/UIKit.h>
 #define MozjpegImage   UIImage
+#define MozjpegSize   CGSize
 #endif
 
 @interface MozjpegImage (MJImage)
