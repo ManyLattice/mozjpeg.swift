@@ -78,7 +78,7 @@
 -(nullable NSData*)compressData:(nonnull NSData*)data size:(MozjpegSize)size quality:(int)quality progressive:(bool)progressive useFastest:(bool)useFastest {
     unsigned char* array = (unsigned char*) [data bytes];
     
-    const int pixelFormat = TJPF_RGBA;
+    const int pixelFormat = TJPF_RGB;
     
     unsigned char* jpegBuf = nullptr;
     unsigned long jpegSize = 0;
