@@ -6,6 +6,14 @@
 //
 
 #import "TargetConditionals.h"
+#import "stdio.h"
+#import "stdint.h"
+#import "jconfig.h"
+#import "jerror.h"
+#import "jmorecfg.h"
+#import "jpeglib.h"
+#import "turbojpeg.h"
+
 
 #if TARGET_OS_OSX
 #import <AppKit/AppKit.h>

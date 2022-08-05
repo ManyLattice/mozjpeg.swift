@@ -18,15 +18,45 @@ import mozjpegc
 
 public extension Data {
     
-    func mozjpegRepresentation(size: NSSize, quality: Float) throws -> Data {
-        let encoder = MJEncoder()
+//    func mozjpegRepresentation(size: NSSize, quality: Float) throws -> Data {
+//        let encoder = MJEncoder()
+//        let quality = Swift.max(1, Int32(quality * 100))
+//
+//        guard let data = encoder.compressData(self, size: size, quality: quality, progressive: true, useFastest: false) else {
+//            throw CannotCompressError()
+//        }
+//
+//        return data
+//    }
+    
+    func mozjpegRepresentation(size: NSSize, quality: Float) -> Data? {
+        guard let imageRep = NSBitmapImageRep(data: self) else { return nil }
         let quality = Swift.max(1, Int32(quality * 100))
+
+        let handle = tjInitCompress()
         
-        guard let data = encoder.compressData(self, size: size, quality: quality, progressive: true, useFastest: false) else {
-            throw CannotCompressError()
-        }
+        let width = Int32(size.width)
+        let height = Int32(size.height)
+        let bufferSize = TJBUFSIZE(width, height)
         
-        return data
+        let pixelFormat: Int32 = Int32(imageRep.bitsPerPixel / 8)
+        let subsampling: Int32 = Int32(TJSAMP_420.rawValue)
+        let flags = TJFLAG_ACCURATEDCT
+        
+        let dstBuf = malloc(Int(bufferSize))
+        var jpegSize: UInt = 0
+                
+        tjCompress(handle, imageRep.bitmapData, width, 0, height, pixelFormat, dstBuf, &jpegSize, subsampling, Int32(quality), flags)
+        
+        guard let dstBuf = dstBuf else { return nil }
+        
+        let dstData = Data(bytes: dstBuf, count: Int(jpegSize))
+         
+        free(dstBuf)
+        
+        guard dstData.count != 0 else { return nil }
+        
+        return dstData
     }
     
 }
